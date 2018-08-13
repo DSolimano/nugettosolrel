@@ -31,6 +31,11 @@ namespace NuGetToSolutionRelative
         {
             int startIndex = refPath_.IndexOf("packages");
 
+            if (startIndex < 0)
+            {
+                return refPath_;
+            }
+
             return "$(SolutionDir)" + refPath_.Substring(startIndex);
         }
     }

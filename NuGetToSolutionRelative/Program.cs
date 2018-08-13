@@ -57,6 +57,19 @@ namespace NuGetToSolutionRelative
             foreach(var proj in sf.ProjectsInOrder)
             {
                 Console.WriteLine("Starting " + proj.ProjectName);
+
+                if(!
+                    (
+                        proj.AbsolutePath.EndsWith(".csproj")
+                        ||
+                        proj.AbsolutePath.EndsWith(".vbproj")
+                    )
+                )
+                {
+                    Console.WriteLine("Unsupported project type, bailing");
+                    break;
+                }
+
                 XmlDocument xd = new XmlDocument();
                 xd.Load(proj.AbsolutePath);
 

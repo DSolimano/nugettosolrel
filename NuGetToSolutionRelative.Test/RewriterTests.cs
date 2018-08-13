@@ -42,5 +42,14 @@ namespace NuGetToSolutionRelative.Test
             string actual = RefTransformer.MakeRefRelative(initial);
             Assert.AreEqual(desired, actual);
         }
+
+        [Test]
+        public void NonNuget()
+        {
+            string initial = "..\\..\\Foobar2000\\lib\\net45-full\\Foobar.dll";
+
+            string actual = RefTransformer.MakeRefRelative(initial);
+            Assert.AreEqual(initial, actual);
+        }
     }
 }
